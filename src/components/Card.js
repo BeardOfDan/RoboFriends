@@ -1,12 +1,13 @@
 import React from 'react';
 
-export default () => {
+export default (props) => {
+  const { name, email, id } = props.robot;
   return (
-    <div className='bg-light-green dib br3 pa3 ma2 grow'>
-      <img src='https://robohash.org/John_Doe?200x200' alt='robo friend' />
+    <div className='tc bg-light-green dib br3 pa3 ma2 grow bw2 shadow-5'>
+      <img src={`https://robohash.org/${id}?200x200`} alt={name + '\' image'} />
       <div>
-        <h2>John Doe</h2>
-        <p>John.Doe@email.com</p>
+        <h2>{name}</h2>
+        <p>{email}</p>
       </div>
     </div>
   );
