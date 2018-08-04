@@ -5,7 +5,7 @@ import Searchbox from './Searchbox';
 
 export default (props) => {
   return (
-    <div>
+    <div className='tc'>
       <h1>Robo Friends</h1>
       <Searchbox />
       <CardList robots={robots} />
