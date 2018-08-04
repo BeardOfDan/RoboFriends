@@ -8,17 +8,26 @@ export default class App extends Component {
     super(props);
 
     this.state = {
-      robots,
-      'searchField': ''
+      'filteredRobots': robots
     };
   }
+
+  onSearchChange = (event) => {
+    const target = event.target.value;
+
+    const filteredRobots = robots.filter((robots) => {
+      return robots.name.toLowerCase().includes(target.toLowerCase());
+    });
+
+    this.setState({ filteredRobots });
+  };
 
   render() {
     return (
       <div className='tc'>
         <h1>Robo Friends</h1>
-        <Searchbox />
-        <CardList robots={robots} />
+        <Searchbox searchChange={this.onSearchChange} />
+        <CardList robots={this.state.filteredRobots} />
       </div>
     );
   }
