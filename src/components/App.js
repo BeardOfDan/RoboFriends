@@ -26,7 +26,7 @@ export default class App extends Component {
   render() {
     return (
       <div className='tc'>
-        <h1>Robo Friends</h1>
+        <h1 className='f1'>Robo Friends</h1>
         <Searchbox searchChange={this.onSearchChange} />
         <CardList robots={this.state.filteredRobots} />
       </div>
