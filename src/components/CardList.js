@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Card from './Card';
 import { robots } from './../robots'; // Sample users list
 
@@ -7,7 +7,7 @@ export default () => {
     <div className='tc'>
       {robots.map((robot, i, arr) => {
         return (
-          <Card robot={robot} />
+          <Card key={robot.username} robot={robot} />
         );
       })}
     </div>
