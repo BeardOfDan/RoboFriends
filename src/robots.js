@@ -1,6 +1,6 @@
 // Sample RoboFriends, supplied from https://github.com/aneagoie/robofriends/blob/master/src/robots.js
 
-export const robots = [
+export default [
   {
     id: 1,
     name: 'Leanne Graham',

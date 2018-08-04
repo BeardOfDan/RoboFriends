@@ -1,8 +1,7 @@
 import React from 'react';
 import Card from './Card';
-import { robots } from './../robots'; // Sample users list
 
-export default () => {
+export default ({ robots }) => {
   return (
     <div className='tc'>
       {robots.map((robot, i, arr) => {
