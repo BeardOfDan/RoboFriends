@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Card from './components/Card';
+import CardList from './components/CardList';
 import registerServiceWorker from './registerServiceWorker';
-import 'tachyons'; // 3rd party CSS stylings
-import { robots } from './robots';
+import 'tachyons';
 
-ReactDOM.render(<Card robot={robots[0]} />, document.getElementById('root'));
+ReactDOM.render(<CardList />, document.getElementById('root'));
 registerServiceWorker();
