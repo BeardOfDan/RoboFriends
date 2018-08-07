@@ -36,20 +36,16 @@ export default class App extends Component {
   };
 
   render() {
-    if (this.state.robots.length === 0) {
-      return (
-        <h1 className="tc f1">Loading robots...</h1>
-      );
-    }
-
-    return (
-      <div className="tc">
-        <h1 className="f1">Robo Friends</h1>
-        <Searchbox searchChange={this.onSearchChange} />
-        <Scroll>
-          <CardList robots={this.state.filteredRobots} />
-        </Scroll>
-      </div>
-    );
+    return (this.state.robots.length) ?
+      (
+        <div className="tc">
+          <h1 className="f1">Robo Friends</h1>
+          <Searchbox searchChange={this.onSearchChange} />
+          <Scroll>
+            <CardList robots={this.state.filteredRobots} />
+          </Scroll>
+        </div>
+      )
+      : (<h1 className="tc f1">Loading robots...</h1>);
   }
 }
