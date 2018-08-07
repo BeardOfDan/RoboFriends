@@ -17,8 +17,8 @@ export default class App extends Component {
 
   componentDidMount() {
     axios.get('https://jsonplaceholder.typicode.com/users')
-      .then((res) => {
-        this.setState({ 'filteredRobots': res.data, 'robots': res.data });
+      .then(({ data }) => {
+        this.setState({ 'filteredRobots': data, 'robots': data });
       })
       .catch((e) => {
         console.log('Error in getting user data!\n' + e);
