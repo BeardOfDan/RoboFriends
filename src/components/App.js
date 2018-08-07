@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CardList from './CardList';
 import Searchbox from './Searchbox';
+import Scroll from './Scroll';
 import './App.css';
 import axios from 'axios';
 
@@ -45,7 +46,9 @@ export default class App extends Component {
       <div className="tc">
         <h1 className="f1">Robo Friends</h1>
         <Searchbox searchChange={this.onSearchChange} />
-        <CardList robots={this.state.filteredRobots} />
+        <Scroll>
+          <CardList robots={this.state.filteredRobots} />
+        </Scroll>
       </div>
     );
   }
