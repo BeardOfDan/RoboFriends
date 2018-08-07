@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import CardList from './CardList';
 import Searchbox from './Searchbox';
 import Scroll from './Scroll';
+import ErrorBoundry from './ErrorBoundry';
 import './App.css';
 import axios from 'axios';
 
@@ -42,7 +43,9 @@ export default class App extends Component {
           <h1 className="f1">Robo Friends</h1>
           <Searchbox searchChange={this.onSearchChange} />
           <Scroll>
-            <CardList robots={this.state.filteredRobots} />
+            <ErrorBoundry>
+              <CardList robots={this.state.filteredRobots} />
+            </ErrorBoundry>
           </Scroll>
         </div>
       )
