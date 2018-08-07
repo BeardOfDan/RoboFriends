@@ -1,22 +1,33 @@
 import React, { Component } from 'react';
 import CardList from './CardList';
-import robots from './../robots.js';
 import Searchbox from './Searchbox';
 import './App.css';
+import axios from 'axios';
 
 export default class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      'filteredRobots': robots
+      'robots': [],
+      'filteredRobots': []
     };
+  }
+
+  componentDidMount() {
+    axios.get('https://jsonplaceholder.typicode.com/users')
+      .then((res) => {
+        this.setState({ 'filteredRobots': res.data, 'robots': res.data });
+      })
+      .catch((e) => {
+        console.log('Error in getting user data!\n' + e);
+      });
   }
 
   onSearchChange = (event) => {
     const target = event.target.value;
 
-    const filteredRobots = robots.filter((robots) => {
+    const filteredRobots = this.state.robots.filter((robots) => {
       return robots.name.toLowerCase().includes(target.toLowerCase());
     });
 
