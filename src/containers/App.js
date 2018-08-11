@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import CardList from './CardList';
-import Searchbox from './Searchbox';
-import Scroll from './Scroll';
-import ErrorBoundry from './ErrorBoundry';
+import CardList from '../components/CardList';
+import Searchbox from '../components/Searchbox';
+import Scroll from '../components/Scroll';
+import ErrorBoundry from '../components/ErrorBoundry';
 import './App.css';
 import axios from 'axios';
 
