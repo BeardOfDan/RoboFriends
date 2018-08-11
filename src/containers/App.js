@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import CardList from '../components/CardList';
 import Searchbox from '../components/Searchbox';
 import Scroll from '../components/Scroll';
@@ -6,45 +7,56 @@ import ErrorBoundry from '../components/ErrorBoundry';
 import './App.css';
 import axios from 'axios';
 
-export default class App extends Component {
+import { setSearchField } from '../actions';
+
+const mapStateToProps = (state) => {
+  return {
+    'searchField': state.searchField
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    'onSearchChange': (event) => {
+      dispatch(setSearchField(event.target.value));
+    }
+  };
+};
+
+class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      'robots': [],
-      'filteredRobots': []
+      'robots': []
     };
   }
 
   componentDidMount() {
     axios.get('https://jsonplaceholder.typicode.com/users')
       .then(({ data }) => {
-        this.setState({ 'filteredRobots': data, 'robots': data });
+        this.setState({ 'robots': data });
       })
       .catch((e) => {
         console.log('Error in getting user data!\n' + e);
       });
   }
 
-  onSearchChange = (event) => {
-    const target = event.target.value;
+  render() {
+    const { searchField, onSearchChange } = this.props;
 
     const filteredRobots = this.state.robots.filter((robots) => {
-      return robots.name.toLowerCase().includes(target.toLowerCase());
+      return robots.name.toLowerCase().includes(searchField.toLowerCase());
     });
 
-    this.setState({ filteredRobots });
-  };
-
-  render() {
     return (this.state.robots.length) ?
       (
         <div className="tc">
           <h1 className="f1">Robo Friends</h1>
-          <Searchbox searchChange={this.onSearchChange} />
+          <Searchbox searchChange={onSearchChange} />
           <Scroll>
             <ErrorBoundry>
-              <CardList robots={this.state.filteredRobots} />
+              <CardList robots={filteredRobots} />
             </ErrorBoundry>
           </Scroll>
         </div>
@@ -52,3 +64,5 @@ export default class App extends Component {
       : (<h1 className="tc f1">Loading robots...</h1>);
   }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
