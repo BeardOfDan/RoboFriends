@@ -5,50 +5,39 @@ import Searchbox from '../components/Searchbox';
 import Scroll from '../components/Scroll';
 import ErrorBoundry from '../components/ErrorBoundry';
 import './App.css';
-import axios from 'axios';
 
-import { setSearchField } from '../actions';
+import { setSearchField, requestRobots } from '../actions';
 
 const mapStateToProps = (state) => {
   return {
-    'searchField': state.searchField
+    'searchField': state.searchRobots.searchField,
+    'robots': state.requestRobots.robots,
+    'isPending': state.requestRobots.isPending,
+    'error': state.requestRobots.error
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    'onSearchChange': (event) => {
-      dispatch(setSearchField(event.target.value));
-    }
+    'onSearchChange': (event) => { dispatch(setSearchField(event.target.value)); },
+    'onRequestRobots': () => { return dispatch(requestRobots()); }
   };
 };
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { 'robots': [] };
-  }
-
   componentDidMount() {
-    axios.get('https://jsonplaceholder.typicode.com/users')
-      .then(({ data }) => {
-        this.setState({ 'robots': data });
-      })
-      .catch((e) => {
-        console.log('Error in getting user data!\n' + e);
-      });
+    this.props.onRequestRobots();
   }
 
   render() {
-    const { searchField, onSearchChange } = this.props;
+    const { searchField, onSearchChange, robots, isPending } = this.props;
 
-    const filteredRobots = this.state.robots.filter((robots) => {
+    const filteredRobots = robots.filter((robots) => {
       return robots.name.toLowerCase().includes(searchField.toLowerCase());
     });
 
-    return (this.state.robots.length) ?
-      (
+    return (isPending) ? (<h1 className="tc f1">Loading robots...</h1>)
+      : (
         <div className="tc">
           <h1 className="f1">Robo Friends</h1>
           <Searchbox searchChange={onSearchChange} />
@@ -58,8 +47,7 @@ class App extends Component {
             </ErrorBoundry>
           </Scroll>
         </div>
-      )
-      : (<h1 className="tc f1">Loading robots...</h1>);
+      );
   }
 }
 
