@@ -27,9 +27,7 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      'robots': []
-    };
+    this.state = { 'robots': [] };
   }
 
   componentDidMount() {

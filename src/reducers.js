@@ -5,9 +5,7 @@ import {
   REQUEST_ROBOTS_FAILED
 } from './constants.js';
 
-const initialStateSearch = {
-  'searchField': ''
-};
+const initialStateSearch = { 'searchField': '' };
 
 export const searchRobots = (state = initialStateSearch, action = {}) => {
   switch (action.type) {
