@@ -7,6 +7,7 @@ export default ({ searchChange }) => {
         className='pa3 ba b--green bg-lightest-blue'
         type='search'
         placeholder='Search Robots'
+        aria-label="Search Robots"
         onChange={searchChange}
       />
     </div>
