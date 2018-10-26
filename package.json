@@ -14,8 +14,9 @@
     "tachyons": "^4.11.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "dev": "react-scripts start",
+    "prestart": "react-scripts build",
+    "start": "serve -s build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
