@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 import CardList from '../components/CardList';
 import Searchbox from '../components/Searchbox';
 import Scroll from '../components/Scroll';
 import ErrorBoundry from '../components/ErrorBoundry';
+import Header from '../components/Header';
+
 import './App.css';
 
 import { setSearchField, requestRobots } from '../actions';
@@ -39,7 +42,7 @@ class App extends Component {
     return (isPending) ? (<h1 className="tc f1">Loading robots...</h1>)
       : (
         <div className="tc">
-          <h1 className="f1">Robo Friends</h1>
+          <Header />
           <Searchbox searchChange={onSearchChange} />
           <Scroll>
             <ErrorBoundry>
