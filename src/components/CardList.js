@@ -6,7 +6,7 @@ export default ({ robots }) => {
     <div className='tc'>
       {robots.map((robot, i, arr) => {
         return (
-          <Card key={robot.username} robot={robot} key={i} />
+          <Card key={JSON.stringify(robot.username + i)} robot={robot} />
         );
       })}
     </div>
