@@ -28,9 +28,14 @@ describe('MainPage', () => {
       onRequestRobots: jest.fn(),
       robots: [
         {
-          id: 5,
+          id: 7,
           name: 'John Snow',
           email: 'kingOfTheNorth@gmail.com'
+        },
+        {
+          id: 9,
+          name: 'Ender Wiggin',
+          email: 'theXenocide@gmail.com'
         }
       ],
       searchField: 'o',
