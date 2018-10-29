@@ -7,7 +7,12 @@ import {
 
 import * as actions from './actions';
 
-describe('', () => {
+import configureMockStore from 'redux-mock-store';
+import thunkMiddleware from 'redux-thunk';
+
+const mockStore = configureMockStore([thunkMiddleware]);
+
+describe('search robots', () => {
   it('should create an action to search robots', () => {
     const text = 'waldo';
     const expectedAction = {
@@ -16,5 +21,17 @@ describe('', () => {
     };
 
     expect(actions.setSearchField(text)).toEqual(expectedAction);
+  });
+
+  it('handles requesting robots API', () => {
+    const store = mockStore();
+    store.dispatch(actions.requestRobots());
+    const action = store.getActions();
+
+    const expectedAction = {
+      type: REQUEST_ROBOTS_PENDING
+    };
+
+    expect(action[0]).toEqual(expectedAction);
   });
 });
