@@ -65,4 +65,15 @@ describe('requestRobots', () => {
       error: ''
     });
   });
+
+  it('should handle REQUEST_ROBOTS_FAILED action', () => {
+    expect(reducers.requestRobots(initialStateRobots, {
+      type: REQUEST_ROBOTS_FAILED,
+      payload: 'Does not compute!?1'
+    })).toEqual({
+      robots: [],
+      isPending: false,
+      error: 'Does not compute!?1'
+    });
+  });
 });
